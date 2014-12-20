@@ -50,7 +50,8 @@ ip addr add 192.168.1.1/24 dev $EVIL_IFACE
 dnsmasq -i $EVIL_IFACE --dhcp-range=192.168.1.10,192.168.1.200,12h
 
 sed -i "s/interface=.*$/interface=$EVIL_IFACE/" hostapd.conf
-if [[ -z "$3" ]]
+
+if [[ -n "$3" ]]
 then
     sed -i "s/ssid.*$/ssid=$3/" hostapd.conf
 fi
