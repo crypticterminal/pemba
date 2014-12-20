@@ -46,6 +46,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	log.Println("gobweb started")
 	http.Handle("/", http.FileServer(http.Dir("site/")))
 
 	/* Aren't I sneaky */

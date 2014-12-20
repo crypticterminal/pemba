@@ -58,11 +58,11 @@ then
     sed -i "s/ssid.*$/ssid=$3/" hostapd.conf
 fi
 
-# Oh apache and friends, how much I hate thou
-go run gobweb.go &
-
 # Create AP, WPA2 mode
-hostapd hostapd.conf
+hostapd hostapd.conf &
+
+# Oh apache and friends, how much I hate thou
+go run gobweb.go
 
 killall dnsmasq
 
