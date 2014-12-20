@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$(id -u)" != "0" ]; then
+	echo "Please run as root"
+	exit 1
+fi
+
 EVIL_IFACE=$1
 
 macchanger -r $EVIL_IFACE
