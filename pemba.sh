@@ -11,6 +11,7 @@ if [[ARGC -lt 2]]
 then
     echo "pemba: A (very) simple evil twin access point captive portal suite"
     echo "command: $0 <evil_interface> <internet_interafce> <ssid>"
+    echo "depends upon macchanger, hostapd, dnsmasq, iptables, go"
 fi
 
 EVIL_IFACE=$1
