@@ -39,8 +39,8 @@ iptables -t nat -A PREROUTING -j GOBWEB
 iptables -t nat -A GOBWEB -p tcp -j DNAT --dport 80 --to-destination 192.168.1.1:80
 iptables -t nat -A GOBWEB -p udp -j DNAT --dport 80 --to-destination 192.168.1.1:80
 
-iptables -t filter -A FORWARD -i $EVIL_IFACE -o wlo1 -j ACCEPT
-iptables -t nat -A POSTROUTING -o wlo1 -j MASQUERADE
+iptables -t filter -A FORWARD -i $EVIL_IFACE -o $GOOD_IFACE -j ACCEPT
+iptables -t nat -A POSTROUTING -o $GOOD_IFACE -j MASQUERADE
 
 # Assign static ip address
 ip addr flush dev $EVIL_IFACE
