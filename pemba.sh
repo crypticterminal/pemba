@@ -5,7 +5,16 @@ if [ "$(id -u)" != "0" ]; then
 	exit 1
 fi
 
+ARGC=$#
+
+if [[ARGC -ne 2]]
+then
+    echo "pemba: A (very) simple evil twin access point captive portal suite"
+    echo "command: $0 <evil_interface> <internet_interafce> <ssid>"
+fi
+
 EVIL_IFACE=$1
+GOOD_IFACE=$2
 
 macchanger -r $EVIL_IFACE
 
@@ -41,6 +50,10 @@ ip addr add 192.168.1.1/24 dev $EVIL_IFACE
 dnsmasq -i $EVIL_IFACE --dhcp-range=192.168.1.10,192.168.1.200,12h
 
 sed -i "s/interface=.*$/interface=$EVIL_IFACE/" hostapd.conf
+if [[ -z "$3" ]]
+then
+    sed -i "s/ssid.*$/ssid=$3/" hostapd.conf
+fi
 
 # Oh apache and friends, how much I hate thou
 go run gobweb.go &
