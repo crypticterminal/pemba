@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# iface name changes EVERY FUCKING TIME
-EVIL_IFACE=$(ip link | grep wlp | cut -d ":" -f2 | cut -c2-)
+EVIL_IFACE=$1
 
 macchanger -r $EVIL_IFACE
 
