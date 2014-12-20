@@ -7,7 +7,7 @@ fi
 
 ARGC=$#
 
-if [[ARGC -ne 2]]
+if [[ARGC -lt 2]]
 then
     echo "pemba: A (very) simple evil twin access point captive portal suite"
     echo "command: $0 <evil_interface> <internet_interafce> <ssid>"
